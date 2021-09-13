@@ -1,2 +1,2 @@
 #! /bin/bash
-find -name "*.sh" -execdir basename {} .sh \;
+find . -name "*.sh" -execdir basename {} .sh \;

@@ -1,2 +1,2 @@
 #! /bin/bash
-ifconfig | grep ether | tr -d ' ' | cut -c 6-22
+ifconfig | grep -w ether | cut -d ' ' -f 2

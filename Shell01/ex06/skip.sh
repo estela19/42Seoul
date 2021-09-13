@@ -1,2 +1,2 @@
 #! /bin/bash
-ls -l | sed "s/$/$\n/"
+ls -l | awk 'NR%2 == 1'
