@@ -1,42 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/12 16:16:15 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/14 02:45:57 by sooykim          ###   ########.fr       */
+/*   Created: 2021/09/14 21:43:34 by sooykim           #+#    #+#             */
+/*   Updated: 2021/09/15 00:11:13 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	up2low(char *a)
+int	match(char *s1, char *s2)
 {
-	*a += 32;
-}
-
-int	ctype(char a)
-{
-	if (a >= 'A' && a <= 'Z')
+	while (*s1 != '\0' && *s2 != '\0')
+	{
+		if (*s1 == *s2)
+		{
+			s1++;
+			s2++;
+			continue ;
+		}
+		return (0);
+	}
+	if (*s1 == '\0' && *s2 == '\0')
 		return (1);
-	else if (a >= 'a' && a <= 'z')
-		return (2);
+	else if (*s2 == '\0')
+		return (1);
 	else
 		return (0);
 }
 
-char	*ft_strlowcase(char	*str)
+char	*ft_strstr(char *str, char *to_find)
 {
-	char	*tmp;
-
-	tmp = str;
+	if (*to_find == '\0')
+		return (str);
 	while (*str != '\0')
 	{
-		if (ctype(*str) == 1)
-		{
-			up2low(str);
-		}
+		if (match(str, to_find))
+			return (str);
 		str++;
-	}
-	return (tmp);
+	}	
+	return (0);
 }

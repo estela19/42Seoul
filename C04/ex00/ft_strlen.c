@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/12 16:16:15 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/14 02:45:57 by sooykim          ###   ########.fr       */
+/*   Created: 2021/09/15 01:09:50 by sooykim           #+#    #+#             */
+/*   Updated: 2021/09/15 02:55:33 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	up2low(char *a)
+int	ft_strlen(char *str)
 {
-	*a += 32;
-}
+	unsigned int	len;
 
-int	ctype(char a)
-{
-	if (a >= 'A' && a <= 'Z')
-		return (1);
-	else if (a >= 'a' && a <= 'z')
-		return (2);
-	else
-		return (0);
-}
-
-char	*ft_strlowcase(char	*str)
-{
-	char	*tmp;
-
-	tmp = str;
+	len = 0;
 	while (*str != '\0')
 	{
-		if (ctype(*str) == 1)
-		{
-			up2low(str);
-		}
 		str++;
+		len++;
 	}
-	return (tmp);
+	return (len);
 }

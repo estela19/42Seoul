@@ -8,7 +8,7 @@ void	ft_print_comb(void)
 	n[0] = '0';
 	n[1] = '1';
 	n[2] = '2';
-	while (n[0] <= '7')
+	while (n[0] <= '6')
 	{
 		while (n[1] <= '8')
 		{
@@ -24,4 +24,5 @@ void	ft_print_comb(void)
 		}
 		n[1] = n[0]++ + 1;
 	}
+	write(1, "789", 3);
 }

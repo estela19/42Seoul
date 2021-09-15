@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/12 16:16:15 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/14 02:45:57 by sooykim          ###   ########.fr       */
+/*   Created: 2021/09/14 21:14:22 by sooykim           #+#    #+#             */
+/*   Updated: 2021/09/14 21:33:08 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	up2low(char *a)
-{
-	*a += 32;
-}
-
-int	ctype(char a)
-{
-	if (a >= 'A' && a <= 'Z')
-		return (1);
-	else if (a >= 'a' && a <= 'z')
-		return (2);
-	else
-		return (0);
-}
-
-char	*ft_strlowcase(char	*str)
+char	*ft_strcat(char	*dest, char	*src)
 {
 	char	*tmp;
 
-	tmp = str;
-	while (*str != '\0')
+	tmp = dest;
+	while (*dest != '\0')
+		dest++;
+	while (1)
 	{
-		if (ctype(*str) == 1)
-		{
-			up2low(str);
-		}
-		str++;
+		*dest = *src;
+		if (*src == '\0')
+			break ;
+		dest++;
+		src++;
 	}
 	return (tmp);
 }

@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 15:29:19 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/13 19:40:29 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/15 00:41:42 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include<unistd.h>
 
 int	check_printable(char a)
 {
@@ -18,26 +20,7 @@ int	check_printable(char a)
 		return (0);
 }
 
-int	ft_str_is_printable(char *str)
-{
-	int	flag;
-
-	if (*str == '\0')
-		return (1);
-	else
-	{
-		while (*str != '\0')
-		{
-			flag = check_printable(*str);
-			if (flag == 0)
-				return (0);
-			str++;
-		}
-		return (1);
-	}
-}
-
-void	print(int n)
+void	print_num(int n)
 {
 	char	c;
 
@@ -45,16 +28,28 @@ void	print(int n)
 	write(1, &c, 1);
 }
 
-void	ft_print_nonprintable(char	*a)
+void	print_char(int n)
 {
-	int	n1;
-	int	n2;
+	char	c;
 
-	n1 = *a / 16;
-	n2 = *a % 16;
-	write(1, '\\', 1);
-	print(n1);
-	print(n2);
+	c = 'a' + n - 10;
+	write(1, &c, 1);
+}
+
+void	ft_print_nonprintable(int a)
+{
+	  int		n1;
+	  int		n2;
+	const char	*slash = "\\";
+
+	n1 = a / 16;
+	n2 = a % 16;
+	write(1, slash, 1);
+	print_num(n1);
+	if (n2 < 10)
+		print_num(n2);
+	else
+		print_char(n2);
 }
 
 void	ft_putstr_non_printable(char *str)
@@ -70,7 +65,10 @@ void	ft_putstr_non_printable(char *str)
 		else
 		{
 			num = *str;
-			ft_print_nonprintable(str);
+			if (num < 0)
+				num += 256;
+			ft_print_nonprintable(num);
 		}
+		str++;
 	}
 }

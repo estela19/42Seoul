@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/12 16:16:15 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/14 02:45:57 by sooykim          ###   ########.fr       */
+/*   Created: 2021/09/14 21:34:44 by sooykim           #+#    #+#             */
+/*   Updated: 2021/09/14 23:58:32 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	up2low(char *a)
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
-	*a += 32;
-}
+	    char		*tmp;
+	unsigned int	i;
 
-int	ctype(char a)
-{
-	if (a >= 'A' && a <= 'Z')
-		return (1);
-	else if (a >= 'a' && a <= 'z')
-		return (2);
-	else
-		return (0);
-}
-
-char	*ft_strlowcase(char	*str)
-{
-	char	*tmp;
-
-	tmp = str;
-	while (*str != '\0')
+	i = 0;
+	tmp = dest;
+	while (*dest != '\0')
+		dest++;
+	while (i++ < nb)
 	{
-		if (ctype(*str) == 1)
-		{
-			up2low(str);
-		}
-		str++;
+		*dest = *src;
+		if (*src == '\0')
+			break ;
+		dest++;
+		src++;
 	}
+	*dest = '\0';
 	return (tmp);
 }

@@ -1,42 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/12 16:16:15 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/14 02:45:57 by sooykim          ###   ########.fr       */
+/*   Created: 2021/09/15 02:29:42 by sooykim           #+#    #+#             */
+/*   Updated: 2021/09/15 23:45:08 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	up2low(char *a)
+int	check_num(char a)
 {
-	*a += 32;
-}
-
-int	ctype(char a)
-{
-	if (a >= 'A' && a <= 'Z')
+	if (a >= '0' && a <= '9')
 		return (1);
-	else if (a >= 'a' && a <= 'z')
-		return (2);
 	else
 		return (0);
 }
 
-char	*ft_strlowcase(char	*str)
+int	ft_atoi(char *str)
 {
-	char	*tmp;
+	int	mcnt;
+	int	num;
 
-	tmp = str;
-	while (*str != '\0')
+	num = 0;
+	mcnt = 0;
+	while (!check_num(*str))
 	{
-		if (ctype(*str) == 1)
-		{
-			up2low(str);
-		}
+		if (*str == '-')
+			mcnt++;
 		str++;
 	}
-	return (tmp);
+	while (*str != '\0')
+	{
+		if (check_num(*str))
+		{
+			num *= 10;
+			num += *str - '0';
+		}
+		else
+			break ;
+		str++;
+	}
+	if (mcnt % 2)
+		num *= -1;
+	return (num);
 }

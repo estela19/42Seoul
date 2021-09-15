@@ -5,68 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/12 01:02:24 by estela19          #+#    #+#             */
-/*   Updated: 2021/09/15 01:02:17 by sooykim          ###   ########.fr       */
+/*   Created: 2021/09/15 01:17:28 by sooykim           #+#    #+#             */
+/*   Updated: 2021/09/15 12:48:56 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<unistd.h>
 
-int	get_length(int nb)
+void	print_nbr(long n)
 {
-	int	len;
+	long	i;
+	char	buf[256];
 
-	while (nb != 0)
+	i = 0;
+	if (n == 0)
 	{
-		nb /= 10;
-		len++;
+		write(1, "0", 1);
 	}
-	return (len);
-}
-
-void	print(int n)
-{
-	char	c;
-
-	c = '0' + n;
-	write(1, &c, 1);
-}
-
-long long int	abs_(long long int nb)
-{
-	if (nb < 0)
+	while (n)
 	{
-		return (-nb);
+		buf[i++] = (n % 10) + '0';
+		n /= 10;
 	}
-	else
+	while (--i >= 0 )
 	{
-		return (nb);
+		write(1, &buf[i], 1);
 	}
 }
 
 void	ft_putnbr(int nb)
 {
-	 int			arr[20];
-	 int			len;
-	long long int	num;
-	long long int	orignum;
+	long	n;
 
-	len = 0;
-	num = abs_(nb);
-	orignum = num;
-	while (num != 0)
+	if (nb >= 0)
 	{
-		arr[len] = num % 10;
-		num /= 10;
-		len++;
+		print_nbr(nb);
 	}
-	if (nb != orignum)
-		write(1, "-", 1);
-	if (nb == 0)
-		write(1, "0", 1);
-	while (len > 0)
+	else
 	{
-		print(arr[len - 1]);
-		len--;
+		write(1, "-", 1);
+		n = nb;
+		n *= -1;
+		print_nbr(n);
 	}
 }

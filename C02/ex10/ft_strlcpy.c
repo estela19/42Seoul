@@ -3,18 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 15:19:24 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/13 15:28:04 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/15 00:55:24 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+unsigned int	ft_strlen(char *str)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (str[i++] != '\0')
+		;
+	return (i);
+}
 
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
 	char	*tmp;
 
-	tmp = dest;
+	tmp = src;
 	while (size > 1)
 	{
 		*dest = *src;
@@ -24,5 +34,5 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 		size--;
 	}
 	*dest = '\0';
-	return (tmp);
+	return (ft_strlen(tmp) - 1);
 }
