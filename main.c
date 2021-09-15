@@ -1,33 +1,74 @@
-#include "C04/ex05/ft_atoi_base.c"
-#include <stdio.h>
-int	ft_atoi_base(char *str, char *base);
-int main(void)
+#include<unistd.h>
+
+void	print(char str[])
 {
-//	printf("%d\n", ft_atoi_base("10", "011"));
-	printf("%d\n", ft_atoi_base("1234567890", "0123456789"));
-	printf("%d\n", ft_atoi_base("10000000000000000", "01"));
-	printf("%d\n", ft_atoi_base("5F5E100", "0123456789ABCDEF"));
-	printf("%d\n", ft_atoi_base("104134211161", "0123456"));
-	printf("%d\n", ft_atoi_base("-13344223434043", "01234"));
-	printf("%d\n\n", ft_atoi_base("5EHNCKA", "0123456789ABCDEFGHIJKLMNOPQ"));
+	int	i;
 
-	printf("%d\n", ft_atoi_base("!@#$%^&*()", ")!@#$%^&*("));
-	printf("%d\n", ft_atoi_base("IOOOOOOOOOOOOOOOO", "OI"));
-	printf("%d\n", ft_atoi_base("<C<B\"\'\'", "\'\"\?>.<,QWERT ABC"));
-	printf("%d\n", ft_atoi_base("Qa QR qQQQtQ", "aQqR Tt"));
-	printf("%d\n", ft_atoi_base("-_{{}}||{}{}=}{", "=_|{}"));
-	printf("%d\n", ft_atoi_base("D'ws;t4", "ZXCS DF12345;:'\"qwertyas@#$"));
-	printf("%d\n", ft_atoi_base("^$O$M", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_= "));
-	printf("%d\n\n", ft_atoi_base("!", "!@#$"));
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
+}
 
-	printf("T1: %d\n", ft_atoi_base("123456", "1234563"));
-	printf("T2: %d\n", ft_atoi_base("1234", "12345-64"));
-	printf("T3: %d\n", ft_atoi_base("1234", "12345678+"));
-	printf("T4: %d\n", ft_atoi_base("", "1"));
-	printf("T5: %d\n", ft_atoi_base("12345", ""));
-	printf("T6: %d\n", ft_atoi_base("12345", "a12356a7"));
-	printf("T7: %d\n", ft_atoi_base("     \t\v\f     +---------++-1235aaa776644", "a123567"));
-	printf("T7: %d\n", ft_atoi_base("     \n\r\t     +---------++-1235aaa7766"  , "a123567"));
-	printf("T8: %d\n", ft_atoi_base("            +----8----++-1235aaa7766", "a123567"));
-	return 0;
+int	ft_strcmp(char *arr1, char *arr2)
+{
+	int	i;
+
+	i = 0;
+	while (arr1[i] != '\0' || arr2[i] != '\0')
+	{
+		if (arr1[i] > arr2[i])
+			return (arr1[i] - arr2[i]);
+		else if (arr1[i] < arr2[i])
+			return (arr1[i] - arr2[i]);
+		i++;
+	}
+	return (0);
+}
+
+void	ft_sort(char *tab[], int size)
+{
+	 int	i;
+	 int	j;
+	char	*tmp;
+
+	i = 1;
+	while (i < size)
+	{
+        j = 0;
+		while (j < size - i)
+		{
+			if (ft_strcmp(&tab[j][0], &tab[j + 1][0]) > 0)
+			{
+				tmp = tab[j + 1];
+				tab[j + 1] = tab[j];
+				tab[j] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+int	main(int argc, char *argv[])
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 1;
+	while (i < argc)
+	{
+		ft_sort(&argv[1], argc - 1);
+		i++;
+	}
+	while (j < argc)
+	{
+		print(argv[j]);
+		j++;
+	}
+	return (0);
 }
