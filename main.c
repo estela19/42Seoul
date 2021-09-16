@@ -1,74 +1,80 @@
-#include<unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "C07/ex04/ft_convert_base.c"
 
-void	print(char str[])
+char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
+
+void	do_test(char *nbr, char *base_from, char *base_to)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
+	printf("base_from='%s' base_to='%s'\n", base_from, base_to);
+	printf("Result: ");
+	char *answer = ft_convert_base(nbr, base_from, base_to);
+	if (answer)
 	{
-		write(1, &str[i], 1);
-		i++;
+		printf("'%s'", answer);
+		free(answer);
 	}
-	write(1, "\n", 1);
+	else
+	{
+		printf("NULL!");
+	}
+	printf("\n");
 }
 
-int	ft_strcmp(char *arr1, char *arr2)
+int		main(void)
 {
-	int	i;
-
-	i = 0;
-	while (arr1[i] != '\0' || arr2[i] != '\0')
-	{
-		if (arr1[i] > arr2[i])
-			return (arr1[i] - arr2[i]);
-		else if (arr1[i] < arr2[i])
-			return (arr1[i] - arr2[i]);
-		i++;
-	}
-	return (0);
-}
-
-void	ft_sort(char *tab[], int size)
-{
-	 int	i;
-	 int	j;
-	char	*tmp;
-
-	i = 1;
-	while (i < size)
-	{
-        j = 0;
-		while (j < size - i)
-		{
-			if (ft_strcmp(&tab[j][0], &tab[j + 1][0]) > 0)
-			{
-				tmp = tab[j + 1];
-				tab[j + 1] = tab[j];
-				tab[j] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-int	main(int argc, char *argv[])
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	j = 1;
-	while (i < argc)
-	{
-		ft_sort(&argv[1], argc - 1);
-		i++;
-	}
-	while (j < argc)
-	{
-		print(argv[j]);
-		j++;
-	}
-	return (0);
+	do_test("!@#$%^&*()", ")!@#$%^&*(", "0123456789");
+	do_test("                  +IOOOOOOOOOOOOOOOO", "OI", "01");
+	do_test("    +-----+<C<B\"\'\'", "\'\"\?>.<,QWERT ABC", "0123456789ABCDEF");
+	do_test("Qa QRRtRRaR ", "aQqR Tt", "0123456789");
+	do_test("-_{{}}||_=_}=}{", "=_|{}", "0123456789");
+	do_test("D'wyDZr", "ZXCS DF12345;:'\"qwertyas@#$", "0123456789");
+	do_test("^$G$M", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_= ", "0123456789");
+	do_test("!", "!@#$", "012");
+	do_test("123456", "123456", "ABCDEFG");
+	do_test("1234", "12345-64", "qwertyui");
+	do_test("1234", "12345678+", "qwertyuio");
+	do_test("", "", "");
+	do_test("12345", "", "qwerz");
+	do_test("12345", "a12356a7", "");
+	do_test("     \t\v\f     +---------++-1235aaa776644", "a123567", "zxcasc");
+	do_test("     \n\r\t     +---------++-1235aaa7766"  , "a123567", "asasdasdas");
+	do_test("            +----8----++-1235aaa7766", "a123567", "as3ds");
+	do_test("            +--------++-1235     !!aaa7766", "0123456789", "ole3456789");
+	do_test("  \t  +-----+-<C<B\"\'\'", "\'\"\?>.<,QWERTABCD", "0123456789ABCDEF");
+	do_test("12345", "a123567", "asdfqwer\n");
+	printf("=====CASE01=====\n");
+	printf("result : $%s$\n", ft_convert_base("2147483647", "0123456789", "0123456789abcdef"));
+	printf("real answer : $7fffffff$\n");
+	printf("=====CASE02=====\n");
+	printf("result : $%s$\n", ft_convert_base("---------7fffffff", "0123456789abcdef", "01"));
+	printf("real answer : $-1111111111111111111111111111111$\n");
+	printf("=====CASE03=====\n");
+	printf("result : $%s$\n", ft_convert_base("---+--0001023a", "0123456789", "0123456789"));
+	printf("real answer : $-1023$\n");
+	printf("=====CASE04=====\n");
+	printf("result : $%s$\n", ft_convert_base("-0", "0123456789", "abcdefghij"));
+	printf("real answer : $a$\n");
+	printf("=====CASE05=====\n");
+	printf("result : $%s$\n", ft_convert_base(" \t\t\t ---+++ff-f", "0123456789abcdef", "0123456789"));
+	printf("real answer : $-255\n");
+	printf("=====CASE06=====\n");
+	printf("result : $%s$\n", ft_convert_base("aasdffeessddfffss", "asedf", "ss"));
+	printf("real answer : $(null)$\n");
+	printf("=====CASE07=====\n");
+	printf("result : $%s$\n", ft_convert_base("-+-+- -+asdf", "asdf", "fdsa"));
+	printf("real answer : $f$\n");
+	printf("=====CASE08=====\n");
+	printf("result : $%s$\n", ft_convert_base("  -+-+- -+asdf", "ai sdf", "fdsa"));
+	printf("real answer : $(null)$\n");
+	printf("=====CASE09=====\n");
+	printf("result : $%s$\n", ft_convert_base("\t\t\t\t \v --++-asdf", "asdf", "fd-as"));
+	printf("real answer : $(null)$\n");
+	printf("=====CASE10=====\n");
+	printf("result : $%s$\n", ft_convert_base("   -+a", "abcde", ""));
+	printf("real answer : $(null)$\n");
+	printf("=====CASE11=====\n");
+	printf("result : $%s$\n", ft_convert_base(" -+a", "", "df"));
+	printf("real answer : $(null)$\n");
 }
