@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 17:45:58 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/16 20:47:20 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/17 02:29:35 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	addsep(char *tar, char *sep)
 	int	i;
 
 	i = 0;
-	while (*sep == '\0')
+	while (*sep != '\0')
 	{
 		*tar++ = *sep++;
 		i++;
@@ -33,11 +33,12 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	char	*arr;
 
 	len = 0;
+	i = 0;
 	arr = (char *)malloc(100000000);
 	while (i < size)
 	{
 		j = 0;
-		while (strs[i][j] == '\0')
+		while (strs[i][j] != '\0')
 		{
 			arr[len] = strs[i][j];
 			len++;

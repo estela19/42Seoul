@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 20:47:35 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/17 01:51:42 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/17 02:06:59 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,12 @@ char	*num2base(int nbr, char *base, int minus)
 {
 	 int	i;
 	 int	len;
-	 int	flag;
 	char	buff[10000];
 	char	*tmp;
 
 	i = 0;
 	len = 0;
 	tmp = base;
-	flag = minus;
 	while (*tmp++ != '\0')
 		len++;
 	if (nbr == 0)

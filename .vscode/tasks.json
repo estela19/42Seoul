@@ -5,8 +5,8 @@
             "label": "C/C++: gcc build active file",
             "command": "/usr/bin/gcc",
             "args": [
-                //"-Wall",
-                //"-Wextra",
+                "-Wall",
+                "-Wextra",
                 //"-Werror",
                 "/mnt/c/github/42seoul/main.c",
                 "-g",

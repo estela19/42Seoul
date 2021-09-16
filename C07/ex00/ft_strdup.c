@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 11:48:51 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/16 15:33:58 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/17 02:02:53 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*ft_strdup(char *src)
 	while (i <= len)
 	{
 		arr[i] = src[i];
+		i++;
 	}
 	return (arr);
 }
