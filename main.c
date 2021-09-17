@@ -1,32 +1,49 @@
-#include "C07/ex02/ft_ultimate_range.c"
-#include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include "ft_stock_str.h"
 
-int		ft_ultimate_range(int **range, int min, int max);
+void				ft_show_tab(struct s_stock_str *par);
+struct s_stock_str	*ft_strs_to_tab(int ac, char **av);
 
-void do_test(int min, int max)
+void	ste_putstr(char *str)
 {
-	int *p;
-	int len;
-	len = ft_ultimate_range(&p, min, max);
-	printf("ft_ultimate_range(&p, %d, %d): [len %d] ", min, max, len);
-	for  (int i = 0; i < max - min; i++)
-		printf("%d ", p[i]);
-	printf("_\n");
+	write(1, str, strlen(str));
+}
+
+void	do_test(t_stock_str* par)
+{
+	if (par == 0)
+	{
+		ste_putstr("(NULL)\n");
+	}
+	else
+	{
+		ft_show_tab(par);
+	}
+	write(1, "\n", 1);
 }
 
 int main(void)
 {
-	int *p = NULL;
-	printf("ft_ultimate_range(&p, 0, 0): %d, %p\n", ft_ultimate_range(&p, 0, 0), p);
-	printf("ft_ultimate_range(&p, 1, 0): %d, %p\n", ft_ultimate_range(&p, 1, 0), p);
-	printf("ft_ultimate_range(&p, 2, 0): %d, %p\n", ft_ultimate_range(&p, 1, 0), p);
-	printf("ft_ultimate_range(&p, 0, 3): %d, %d\n", ft_ultimate_range(&p, 0, 3), p > (int *)0);
-	printf("ft_ultimate_range(&p, 2, 5122): %d, %d\n", ft_ultimate_range(&p, 2, 5122), p > (int *)0);
-	// printf("ft_range(0, 2147483647): %p\n", ft_range(0, 2147483647));
-	do_test(-5, 5);
-	do_test(-10, 10);
-	do_test(34, 45);
-	do_test(0, 10);
-	return 0;
+	do_test(ft_strs_to_tab(0, 0));
+
+	char *av1[] = { "HelloWorld!" };
+	do_test(ft_strs_to_tab(1, av1));
+
+	char *av2[] = { "Hello", "42", "SEOUL!" };
+	do_test(ft_strs_to_tab(3, av2));
+
+	char *av3[] = { "", "", "Hello 42 SEOUL!" };
+	do_test(ft_strs_to_tab(3, av3));
+
+	char *av4[] = { "Show", "me", "the", "money" };
+	do_test(ft_strs_to_tab(4, av4));
+
+	char *av5[] = { "Operation", "CWAL", "Do not print this!", "Do not print this!!!!" };
+	do_test(ft_strs_to_tab(2, av5));
+
+	char *av6[] = { "Smoke", "in", "the", "water" };
+	do_test(ft_strs_to_tab(3, av6));
+
+	return (0);
 }
