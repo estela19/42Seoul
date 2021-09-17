@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 20:47:35 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/17 02:06:59 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/18 01:06:19 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int	g_blen;
 
 int	is_valid(char *base, int set)
 {
-	int	i;
-	int	idx;
+	 int	i;
+	 int	idx;
+	char	a;
 
 	if (*base == '\0' || *(base + 1) == '\0')
 		return (0);
@@ -31,7 +32,8 @@ int	is_valid(char *base, int set)
 			g_check[i++][set] = -1;
 		while (*base != '\0')
 		{
-			if (*base == '+' || *base == '-' || *base == ' ')
+			a = *base;
+			if (a == '+' || a == '-' || a == ' ' || a == '\t' || a == '\n')
 				return (0);
 			if (g_check[(int)*base][set] != -1)
 				return (0);
@@ -87,24 +89,24 @@ char	*num2base(int nbr, char *base, int minus)
 }
 
 //return mcnt
-int	base2num(char *str, int *mcnt)
+int	base2num(char *a, int *mcnt)
 {
-	int	i;
-	int	tmp;
+	 int	i;
+	 int	tmp;
 
 	i = 0;
 	tmp = -1;
-	while (*str == '+' || *str == '-' || *str == ' ' || *str == '\t')
+	while (*a == '+' || *a == '-' || *a == ' ' || *a == '\t' || *a == '\n')
 	{
-		if (*str == '-')
+		if (*a == '-')
 			(*mcnt)++;
-		str++;
+		a++;
 	}
-	while (*str != '\0' && g_check[(int)(*str)][0] != -1)
+	while (*a != '\0' && g_check[(int)(*a)][0] != -1)
 	{
 		tmp = 0;
-		g_buff[i++] = g_check[(int)(*str)][0];
-		str++;
+		g_buff[i++] = g_check[(int)(*a)][0];
+		a++;
 	}
 	i = 0;
 	while (g_buff[i] != -1)
