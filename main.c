@@ -1,49 +1,57 @@
-#include <unistd.h>
-#include <string.h>
-#include "ft_stock_str.h"
+#include<stdio.h>
+#include<unistd.h>
+#include<fcntl.h>
 
-void				ft_show_tab(struct s_stock_str *par);
-struct s_stock_str	*ft_strs_to_tab(int ac, char **av);
-
-void	ste_putstr(char *str)
+void	print(const char *str)
 {
-	write(1, str, strlen(str));
+	while (*str != '\0')
+	{
+		write(1, str, 1);
+		str++;
+	}
 }
 
-void	do_test(t_stock_str* par)
+void	print_error(int argc)
 {
-	if (par == 0)
+	const char	*noarg = "File name missing.\n";
+	const char	*manyarg = "Too many arguments.\n";
+
+	if (argc == 1)
+		print(noarg);
+	else if (argc > 2)
+		print(manyarg);
+}
+
+void	set_buf(char *buf)
+{
+	int	i;
+
+	i = 0;
+	while (i < 1024)
+		buf[i++] = 0;
+}
+
+int	main(int argc, char **argv)
+{
+	 int		fd;
+	 int		i;
+	 char		buf[1024];
+	const char	*readerr = "Cannot read file.\n";
+
+	set_buf(buf);
+	print_error(argc);
+	fd = open(argv[1], O_RDONLY);
+	if (-1 == fd)
 	{
-		ste_putstr("(NULL)\n");
+		print(readerr);
+		return (0);
 	}
-	else
+	read(fd, buf, 1024);
+	i = 0;
+	while (buf[i] != '\0')
 	{
-		ft_show_tab(par);
+		write(1, &buf[i++], 1);
 	}
 	write(1, "\n", 1);
-}
-
-int main(void)
-{
-	do_test(ft_strs_to_tab(0, 0));
-
-	char *av1[] = { "HelloWorld!" };
-	do_test(ft_strs_to_tab(1, av1));
-
-	char *av2[] = { "Hello", "42", "SEOUL!" };
-	do_test(ft_strs_to_tab(3, av2));
-
-	char *av3[] = { "", "", "Hello 42 SEOUL!" };
-	do_test(ft_strs_to_tab(3, av3));
-
-	char *av4[] = { "Show", "me", "the", "money" };
-	do_test(ft_strs_to_tab(4, av4));
-
-	char *av5[] = { "Operation", "CWAL", "Do not print this!", "Do not print this!!!!" };
-	do_test(ft_strs_to_tab(2, av5));
-
-	char *av6[] = { "Smoke", "in", "the", "water" };
-	do_test(ft_strs_to_tab(3, av6));
-
 	return (0);
 }

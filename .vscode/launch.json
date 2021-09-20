@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/mnt/c/github/42seoul/main",
-			"args": ["test0", "test1", "zxcacas34", "Trew4Sa", "!!235ADFF", "GoGol", "HelloWorld", "helloworld", "test2", "test3", "teset2", "test1", "asda"],
+			"args": ["test"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],
