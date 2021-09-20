@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 15:37:10 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/20 19:05:23 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/20 20:41:09 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,27 @@ void	set_buf(char (*buf)[SIZE])
 int	parsing(int size, char **input)
 {
 	int	i;
+	int	flag;
 	const char	*ow = ">";
 	const char	*plus = ">>";
 
+	flag = -1;
 	i = 1;
 	while (i < size)
 	{
 		if (input[i][0] == '>' && input[i][1] == '>')
 		{
-
+			flag = APPEND;
 		}
-		else if (input[i] == '>')
+		else if (input[i][0] == '>')
 		{
-
+			flag = OVERWRITE;
 		}
+		else
+		{
+			
+		}
+		
 	}	
 
 }
