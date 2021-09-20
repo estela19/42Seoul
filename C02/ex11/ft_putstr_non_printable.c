@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 15:29:19 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/15 00:41:42 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/20 15:24:09 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_printable(char a)
 {
-	if (a >= 32 && a <= 122)
+	if (a >= 32 && a <= 126)
 		return (1);
 	else
 		return (0);
