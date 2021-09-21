@@ -31,19 +31,6 @@ int	parseint(char *inp)
 	return (num);
 }
 
-void	parsing(char (*input)[SIZE])
-{
-	int	i;
-
-	i = 0;
-	while (input[++i][0] == '-' )
-		;
-	if (input[i][2] != '0')
-		g_pbyte = input[i][2] - '0';
-	else
-		g_pbyte = parseint(input[i + 1]);
-}
-
 void	print(char *str)
 {
 	while (*str != '\0')
@@ -100,6 +87,7 @@ void	invalidbyte_error(char *str)
 	print ("'\n");
 }
 
+/*
 void	set_buf(void)
 {
 	int	i;
@@ -117,6 +105,7 @@ void	set_buf(void)
 		i++;
 	}
 }
+*/
 
 void run(char *file, int fnum, int idx)
 {
@@ -146,7 +135,7 @@ int parsebyte(char *arg)
 	return (0);
 }
 
-int parseoption(char **argv, int* opnum)
+int parseoption(char **argv, int *opnum)
 {
 	if (argv[COMMAND][2] != '\0')
 	{
@@ -173,7 +162,7 @@ int	main(int argc, char **argv)
 	i = 0;
 	idx = 0;
 	fnum = argc - 1;
-	set_buf();
+	//set_buf();
 	if (argv[COMMAND][0] == '-')
 	{
 		if (parseoption(argv, &opnum) == -1)

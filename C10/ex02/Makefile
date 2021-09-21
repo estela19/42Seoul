@@ -6,35 +6,42 @@
 #    By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/21 15:58:47 by sooykim           #+#    #+#              #
-#    Updated: 2021/09/21 17:38:31 by sooykim          ###   ########.fr        #
+#    Updated: 2021/09/21 21:50:12 by sooykim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+.SUFFIXES = .c .o
 
 CC = gcc
 
 SRCDIR = src/
 INC = include/
+LIBS = lib/
 
-#TARGET_SRC := $(SRCDIR)main.c
-#TARGET_OBJ := $(SRCDIR)main.o
+TARGET_SRC := $(SRCDIR)main.c
+TARGET_OBJ := $(SRCDIR)main.o
+STATIC_LIB := $(LIBS)libtail.a
 
-SRCS := $(SRCDIR)parse.c $(SRCDIR)utility.c $(SRCDIR)main.c
-OBJS := $(SRCS:.c = .o)
+SRCS_FOR_LIB:=$(SRCDIR)utility.c $(SRCDIR)parse.c
+OBJS_FOR_LIB:=$(SRCS_FOR_LIB:.c=.o)
 
 CFLAGS += -Wall -Wextra -Werror -I $(INC)
 
-TARGET = main
+TARGET=ft_tail
 
 all: $(TARGET)
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $<
+$(TARGET): $(TARGET_OBJ) $(STATIC_LIB)
+	$(CC) $(CFLAGS) -o $@ $< -L $(LIBS) -ltail
 
-$(SRCDIR)%.o: $(SRCDIR)%.c $(INC)%.h $(INC)tail.h
-	$(CC) ${CFLAGS} -o $@ -c $^
+$(SRCDIR)%.o: $(SRCDIR)%.c
+	$(CC) $(CFLAGS) -o $@ -c $^
 
 clean:
 	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(TARGET)
+
+$(STATIC_LIB): $(OBJS_FOR_LIB)
+	ar rc $@ $^
