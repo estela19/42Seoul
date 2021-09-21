@@ -5,6 +5,7 @@
 
 #define SIZE 10000
 #define MAX_FILE 3000
+#define COMMAND 1
 
  int	g_pbyte;
 char	g_buf[MAX_FILE][SIZE];
@@ -13,13 +14,18 @@ int	parseint(char *inp)
 {
 	int	i;
 	int	num;
+	int	digit;
 
 	i = 0;
 	num = 0;
+	digit = 0;
 	while (inp[i] != '\0')
 	{
+		digit = inp[i] - '0';
+		if (digit > 9 || digit < 0)
+			return (-1);
 		num *= 10;
-		num += inp[i] - '0';
+		num += digit;
 		i++;
 	}
 	return (num);
@@ -59,39 +65,39 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-void	fflush(int fnum, char *path)
+void	fflush(int fnum, char *path, int i)
 {
-	int	i;
-	int	j;
 	int	len;
 
+	if (i != 0)
+		print("\n");
 	if (fnum != 1)
 	{
 		print("==> ");
 		print(path);
 		print(" <==\n");
 	}
-	i = 0;
-	while (i < fnum)
-	{
-		j = 0;
-		len = ft_strlen(g_buf[i]);
-		if (g_pbyte < len)
-			print(&g_buf[i][len - g_pbyte]);
-		else
-			print(&g_buf[i][0]);
-		i++;
-	}
-	print("\n");
+	len = ft_strlen(g_buf[i]);
+	if (g_pbyte < len)
+		print(&g_buf[i][len - g_pbyte]);
+	else
+		print(&g_buf[i][0]);
 }
 
-void	print_error(char *path)
+void	noexist_error(char *path)
 {
-	print ("ft_tail: ");
+	print ("tail: cannot open '");
 	print (path);
-	print (": ");
+	print ("' for reading: ");
 	print (strerror(errno));
 	print ("\n");
+}
+
+void	invalidbyte_error(char *str)
+{
+	print ("tail: invalid number of bytes: '");
+	print (str);
+	print ("'\n");
 }
 
 void	set_buf(void)
@@ -119,60 +125,65 @@ void run(char *file, int fnum, int idx)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		print_error(file);
-		return (0);
+		noexist_error(file);
 	}
-	if (read(fd, g_buf[idx], SIZE) == -1)
+	else
 	{
-		idx++;
-		print_error(file);
+		read(fd, g_buf[idx], SIZE);
+		close(fd);
+		fflush(fnum, file, idx);
 	}
-	if (close(fd) == -1)
-		print_error(file);
-	fflush(fnum, file);
+}
+
+int parsebyte(char *arg)
+{
+	g_pbyte = parseint(arg);
+	if (g_pbyte == -1)
+	{
+		invalidbyte_error(arg);
+		return (-1);
+	}
+	return (0);
+}
+
+int parseoption(char **argv, int* opnum)
+{
+	if (argv[COMMAND][2] != '\0')
+	{
+		if (parsebyte(&argv[COMMAND][2]) == -1)
+			return (-1);
+		*opnum = 1;
+	}
+	else
+	{
+		if (parsebyte(argv[COMMAND + 1]) == -1)
+			return (-1);
+		*opnum = 2;
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	int	i;
 	int	idx;
-	int	fd;
 	int	fnum;
+	int	opnum;
 
 	i = 0;
 	idx = 0;
 	fnum = argc - 1;
 	set_buf();
+	if (argv[COMMAND][0] == '-')
+	{
+		if (parseoption(argv, &opnum) == -1)
+			return (0);
+		fnum -= opnum;
+		i += opnum;
+	}
 	while (++i < argc)
 	{
-		if (argv[i][0] == '-')
-		{
-			if (argv[i][2] != '\0')
-			{
-				g_pbyte = parseint(&argv[i][2]);
-				fnum -= 1;
-			}
-			else
-			{
-				g_pbyte = parseint(argv[++i]);
-				fnum -= 2;
-			}
-			i++;
-		}
-		fd = open(argv[i], O_RDONLY);
-		if (fd == -1)
-		{
-			print_error(argv[i]);
-			return (0);
-		}
-		if (read(fd, g_buf[idx], SIZE) == -1)
-		{
-			idx++;
-			print_error(argv[i]);
-		}
-		if (close(fd) == -1)
-			print_error(argv[i]);
-		fflush(fnum, argv[i]);
+		run(argv[i], fnum, idx++);
 	}
 	return (0);
 }
