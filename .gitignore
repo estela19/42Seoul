@@ -1,2 +1,4 @@
 main.*
 backup/
+.vscode
+a.out
