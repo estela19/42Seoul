@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 13:02:54 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/15 13:57:42 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/22 00:18:05 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-void	convert(int nbr, char *base)
+void	convert(long long nbr, char *base)
 {
-	int	i;
-	int	len;
-	int	tmp;
-	int	buff[100];
+	 int		i;
+	 int		len;
+	 int		tmp;
+	long long	buff[100];
 
 	i = 0;
 	tmp = 0;
@@ -74,7 +74,7 @@ void	convert(int nbr, char *base)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	long	tmp;
+	long long	tmp;
 
 	if (!is_valid(base))
 		;
