@@ -6,7 +6,7 @@
 #    By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/21 15:58:47 by sooykim           #+#    #+#              #
-#    Updated: 2021/09/21 21:50:12 by sooykim          ###   ########.fr        #
+#    Updated: 2021/09/21 21:55:54 by sooykim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(SRCDIR)%.o: $(SRCDIR)%.c
 	$(CC) $(CFLAGS) -o $@ -c $^
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS_FOR_LIB) $(TARGET_OBJ) $(LIBS)*
 
 fclean: clean
 	rm -f $(TARGET)
