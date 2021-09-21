@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 02:18:34 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/20 03:17:36 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/21 02:32:57 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	write(1, "\n", 1);
+	close(fd);
 	return (0);
 }
