@@ -2,3 +2,5 @@ main.*
 backup/
 .vscode
 a.out
+
+*/test*
