@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:38:07 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/22 02:57:03 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/22 08:55:35 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,26 @@ int	classifyop(char op)
 		return (MOD);
 	else
 		return (-1);
+}
+
+int parse_pm_operator(char *op)
+{
+	int	mcnt;
+
+	mcnt = 0;
+	while (*op != '\0')
+	{
+		if (*op == '-')
+			mcnt++;
+		else if (*op == '+')
+			;
+		else
+		{
+			return (-1);
+		}
+		*op++;
+	}
+	return (mcnt);
 }
 
 int	parseoperator(char *op)

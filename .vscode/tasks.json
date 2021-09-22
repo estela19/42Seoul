@@ -7,11 +7,11 @@
             "args": [
                 "-Wall",
                 "-Wextra",
-                //"-Werror",
-                "/mnt/c/github/42seoul/main.c",
+                "-Werror",
+                "${file}",
                 "-g",
                 "-o",
-                "/mnt/c/github/42seoul/main",
+                "/mnt/c/github/42seoul/a.out",
             ],
             "options": {
                 "cwd": "/usr/bin"
@@ -27,7 +27,7 @@
         },
         {
             "label": "execute",
-            "command": "/mnt/c/github/42seoul/main",
+            "command": "/mnt/c/github/42seoul/a.out",
             "group": "test"
        }
     ],

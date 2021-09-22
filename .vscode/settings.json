@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"ft_stock_str.h": "c"
+		"ft_stock_str.h": "c",
+		"parse.h": "c",
+		"errno.h": "c"
 	}
 }
