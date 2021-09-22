@@ -1,57 +1,40 @@
-#include<stdio.h>
-#include<unistd.h>
-#include<fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "/Users/sooykim/Desktop/42Seoul/C07/ex03/ft_strjoin.c"
 
-void	print(const char *str)
+char	*ft_strjoin(int size, char **strs, char *sep);
+
+void	do_test(int size, char **strs, char *sep)
 {
-	while (*str != '\0')
+	printf(" - Elements -\n[");
+	for (int i = 0; i < size; i++)
 	{
-		write(1, str, 1);
-		str++;
+		printf("'%s'", strs[i]);
+		if (i + 1 < size)
+			printf(", ");
 	}
+	printf("]\n");
+	printf(" - Separator: '%s' -\n", sep);
+	printf(" - Result -\n");
+	char *ret = ft_strjoin(size, strs, sep);
+	printf("%s\n[len=%d]\n\n", ret, (int)strlen(ret));
+	free(ret);
 }
 
-void	print_error(int argc)
+int		main(void)
 {
-	const char	*noarg = "File name missing.\n";
-	const char	*manyarg = "Too many arguments.\n";
-
-	if (argc == 1)
-		print(noarg);
-	else if (argc > 2)
-		print(manyarg);
-}
-
-void	set_buf(char *buf)
-{
-	int	i;
-
-	i = 0;
-	while (i < 1024)
-		buf[i++] = 0;
-}
-
-int	main(int argc, char **argv)
-{
-	 int		fd;
-	 int		i;
-	 char		buf[1024];
-	const char	*readerr = "Cannot read file.\n";
-
-	set_buf(buf);
-	print_error(argc);
-	fd = open(argv[1], O_RDONLY);
-	if (-1 == fd)
-	{
-		print(readerr);
-		return (0);
-	}
-	read(fd, buf, 1024);
-	i = 0;
-	while (buf[i] != '\0')
-	{
-		write(1, &buf[i++], 1);
-	}
-	write(1, "\n", 1);
-	return (0);
+	char* texts1[] = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "k" };
+	do_test(10, texts1, ", ");
+	char* texts2[] = { };
+	do_test(0, texts2, ", ");
+	do_test(-1, texts2, ", ");
+	char* texts3[] = { "adasdsa", "", "", "zxcva", "12134", "", "@@", "!", "??", "Hello World!" };
+	do_test(9, texts3, " -@- ");
+	char* texts4[] = { "Doom2 - Hell on earth" };
+	do_test(1, texts4, " ^^ ");
+	char* texts5[] = { "Diff", "OK", ":D", "\n", "Grade:", "100" };
+	do_test(6, texts5, " ");
+	char* texts6[] = { "Diff", "KO", "", "\n", "Grade:", "0" };
+	do_test(6, texts6, ":( ");
 }

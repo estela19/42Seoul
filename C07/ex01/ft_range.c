@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:24:07 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/17 02:47:34 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/22 18:25:31 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	*ft_range(int min, int max)
 	j = 0;
 	if (min >= max)
 	{
-		arr = '\0';
+		arr = 0;
 		return (arr);
 	}
 	else

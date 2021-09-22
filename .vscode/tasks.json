@@ -11,7 +11,7 @@
                 "${file}",
                 "-g",
                 "-o",
-                "/mnt/c/github/42seoul/a.out",
+                "/Users/sooykim/Desktop/42Seoul/a.out",
             ],
             "options": {
                 "cwd": "/usr/bin"
@@ -27,7 +27,7 @@
         },
         {
             "label": "execute",
-            "command": "/mnt/c/github/42seoul/a.out",
+            "command": "/Users/sooykim/Desktop/42Seoul/a.out",
             "group": "test"
        }
     ],

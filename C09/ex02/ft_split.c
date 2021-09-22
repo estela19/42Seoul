@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 17:31:01 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/20 02:12:45 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/22 18:16:27 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	set_cset(char *charset)
 	}
 }
 
-char**	newarr(void)
+char	**newarr(void)
 {
 	 int	i;
 	char	**sol;
