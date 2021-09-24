@@ -3,19 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 18:16:53 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/22 18:27:39 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/22 23:39:54 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdlib.h>
 
+int		g_i;
+int		g_idx;
+int		g_flag;
 char	g_cset[200];
 
 void	set_cset(char *charset)
 {
+	int	i;
+
+	i = 0;
+	while (i < 200)
+		g_cset[i++] = 0;
 	while (*charset != '\0')
 	{
 		g_cset[(int)(*charset)] = 1;
@@ -38,31 +46,37 @@ char	**newarr(void)
 	return (sol);
 }
 
+void	set_variable(void)
+{
+	g_i = 0;
+	g_idx = 0;
+	g_flag = 0;
+}
+
 char	**ft_split(char *str, char *charset)
 {
-	 int	i;
-	 int	idx;
 	char	**sol;
 
+	set_variable();
 	sol = newarr();
 	set_cset(charset);
-	i = 0;
-	idx = 0;
 	if (g_cset[(int)(*str)])
 		str++;
 	while (*str)
 	{
 		if (!g_cset[(int)(*str)])
-			sol[i][idx++] = *str;
+			sol[g_i][g_idx++] = *str;
 		else
 		{
-			sol[i][idx] = '\0';
-			idx = 0;
-			i++;
+			sol[g_i][g_idx] = '\0';
+			g_idx = 0;
+			if (sol[g_i][0] != '\0')
+				g_i++;
+			g_flag = 0;
 		}
 		str++;
 	}
-	sol[i++][idx] = '\0';
-	sol[i] = 0;
+	sol[g_i++][g_idx] = '\0';
+	sol[g_i] = 0;
 	return (sol);
 }
