@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 22:57:09 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/18 00:12:54 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/24 22:38:16 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 
 	i = 0;
 	sen = (t_stock_str *)malloc(sizeof(t_stock_str) * (ac + 1));
-	if (sen == '\0')
+	if (sen == 0)
 		return (0);
 	while (i < ac)
 	{
