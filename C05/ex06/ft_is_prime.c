@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 00:19:27 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/23 23:08:06 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/24 22:38:13 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ int	ft_sqrt(int nb)
 	int	i;
 
 	i = 1;
-	while (i * i <= nb && i < 46341)
+	while (i * i <= nb && i <= 46341)
 		i++;
 	i--;
 	return (i);
