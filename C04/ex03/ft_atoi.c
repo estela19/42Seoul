@@ -6,57 +6,45 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 02:29:42 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/21 23:54:05 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/24 22:54:20 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-int	g_num;
-int	g_mcnt;
 
 int	check_num(char a)
 {
 	if (a >= '0' && a <= '9')
 		return (1);
-	else if (a == '+' || a == '-' \
-	|| a == ' ' || a == '\t' || a == '\n' || a == '\r'\
-	|| a == '\f' || a == '\v')
+	else if (a == '+' || a == '-')
 		return (2);
+	else if (a == ' ' || a == '\t' || a == '\n' || a == '\r'\
+	|| a == '\f' || a == '\v')
+		return (3);
 	else
 		return (0);
 }
 
-void	init(int *flag)
-{
-	g_num = 0;
-	g_mcnt = 0;
-	*flag = 0;
-}
-
 int	ft_atoi(char *str)
 {
-	int	flag;
-	int	check;
+	int	mcnt;
+	int	num;
 
-	init(&flag);
-	while (*str)
+	mcnt = 0;
+	num = 0;
+	while (check_num(*str) == 3)
+		str++;
+	while (check_num(*str) == 2)
 	{
-		check = check_num(*str);
-		if (check == 1)
-		{
-			flag = 1;
-			g_num *= 10;
-			g_num += *str - '0';
-		}
-		else if (check == 2 && flag == 0)
-		{
-			if (*str == '-')
-				g_mcnt++;
-		}
-		else
-			break ;
+		if (*str == '-')
+			mcnt++;
 		str++;
 	}
-	if (g_mcnt % 2 == 1)
-		g_num *= -1;
-	return (g_num);
+	while (check_num(*str) == 1)
+	{
+		num *= 0;
+		num += *str - '0';
+		str++;
+	}
+	if (mcnt % 2 == 1)
+		num *= -1;
+	return (num);
 }
