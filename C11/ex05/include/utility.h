@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   utility.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 02:37:47 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/25 01:08:48 by sooykim          ###   ########.fr       */
+/*   Created: 2021/09/25 00:08:15 by sooykim           #+#    #+#             */
+/*   Updated: 2021/09/25 00:58:37 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef UTILITY_H
+# define UTILITY_H
 
-# define ADD 0
-# define SUB 1
-# define MUL 2
-# define DIV 3
-# define MOD 4
+# include<unistd.h>
 
-int	parse_int(char *a);
-int	classifyop(char op);
-int	parse_op(char *op);
+int		check_num(char a);
+int		ft_strlen(char *a);
+void	print(char *a);
+void	zero_error(char *str);
+void	print_num(int nb);
 
 #endif
