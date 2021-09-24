@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 14:35:03 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/15 23:41:26 by sooykim          ###   ########.fr       */
+/*   Created: 2021/09/24 23:09:06 by sooykim           #+#    #+#             */
+/*   Updated: 2021/09/24 23:24:45 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	g_check[300];
-int	g_buff[100];
 int	g_blen;
 
 int	is_valid(char *base)
@@ -45,69 +44,39 @@ int	check_num(char a)
 {
 	if (g_check[(int)a] != -1)
 		return (1);
-	else if (a == '+' || a == '-' || a == ' ' )
+	else if (a == '+' || a == '-')
 		return (0);
-	else if (a == '\t' || a == '\n' || a == '\v' || a == '\f' || a == '\r')
-		return (0);
-	else
+	else if (a == '\t' || a == '\n' || a == '\v' \
+	|| a == '\f' || a == '\r' || a == ' ')
 		return (2);
-}
-
-int	convert(void)
-{
-	int	i;
-	int	tmp;
-
-	tmp = 0;
-	i = 0;
-	while (g_buff[i] != -1)
-	{
-		tmp *= g_blen;
-		tmp += g_buff[i];
-		i++;
-	}
-	return (tmp);
-}
-
-void	base2num(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (*str != '\0')
-	{
-		if (check_num(*str))
-		{
-			g_buff[i] = g_check[(int)*str];
-			i++;
-		}	
-		else
-			break ;
-		str++;
-	}
+	else
+		return (3);
 }
 
 int	ft_atoi_base(char *str, char *base)
 {
-	int	i;
-	int	mcnt;
 	int	num;
+	int	mcnt;
 
-	i = 0;
-	while (i < 100)
-		g_buff[i++] = -1;
+	num = 0;
 	mcnt = 0;
 	if (!is_valid(base))
 		return (0);
-	while (!check_num(*str))
+	while (check_num(*str) == 2)
+		str++;
+	while (check_num(*str) == 0)
 	{
 		if (*str == '-')
 			mcnt++;
 		str++;
 	}
-	base2num(str);
-	num = convert();
-	if (mcnt % 2)
+	while (g_check[(int)*str] != -1)
+	{
+		num *= g_blen;
+		num += g_check[(int)*str];
+		str++;
+	}
+	if (mcnt % 2 == 1)
 		num *= -1;
 	return (num);
 }

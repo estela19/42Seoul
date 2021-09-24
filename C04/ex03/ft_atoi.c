@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 02:29:42 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/24 22:54:20 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/24 23:26:33 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_atoi(char *str)
 	}
 	while (check_num(*str) == 1)
 	{
-		num *= 0;
+		num *= 10;
 		num += *str - '0';
 		str++;
 	}
