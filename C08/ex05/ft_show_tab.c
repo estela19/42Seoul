@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_show_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 23:27:12 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/18 00:12:47 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/25 20:05:42 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_str(char *str)
 		write(1, str, 1);
 		str++;
 	}
-	write(1, '\n', 1);
+	write(1, "\n", 1);
 }
 
 void	print_num(int num)
@@ -39,7 +39,7 @@ void	print_num(int num)
 	{
 		write(1, &buff[i], 1);
 	}
-	write(1, '\n', 1);
+	write(1, "\n", 1);
 }
 
 void	ft_show_tab(struct s_stock_str *par)
