@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 17:45:58 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/17 02:29:35 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/25 14:08:57 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ int	addsep(char *tar, char *sep)
 	return (i);
 }
 
+int	ft_strlen(char	*str)
+{
+	int	len;
+
+	len = 0;
+	while (*str != '\0')
+	{
+		str++;
+		len++;
+	}
+	return (len);
+}
+
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	 int	i;
@@ -34,6 +47,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 
 	len = 0;
 	i = 0;
+	arr = 0;
 	arr = (char *)malloc(100000000);
 	while (i < size)
 	{
@@ -50,5 +64,6 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 			len += addsep(&arr[len], sep);
 		}
 	}
+	arr[len] = '\0';
 	return (arr);
 }
