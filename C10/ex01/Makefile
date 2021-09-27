@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/21 15:58:59 by sooykim           #+#    #+#              #
-#    Updated: 2021/09/21 16:58:51 by sooykim          ###   ########.fr        #
+#    Updated: 2021/09/27 18:51:55 by sooykim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC = gcc
-CFAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 TARGET = ft_cat
 
 all: $(TARGET)

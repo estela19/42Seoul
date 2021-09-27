@@ -2,6 +2,7 @@
 	"files.associations": {
 		"ft_stock_str.h": "c",
 		"parse.h": "c",
-		"errno.h": "c"
+		"errno.h": "c",
+		"stdlib.h": "c"
 	}
 }

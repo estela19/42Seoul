@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 17:31:01 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/22 18:16:27 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/27 15:48:31 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ char	**ft_split(char *str, char *charset)
 	set_cset(charset);
 	i = 0;
 	idx = 0;
-	if (g_cset[*str])
+	if (g_cset[(int)*str])
 		str++;
 	while (*str)
 	{
-		if (!g_cset[*str])
+		if (!g_cset[(int)*str])
 			sol[i][idx++] = *str;
 		else
 		{
@@ -63,6 +63,6 @@ char	**ft_split(char *str, char *charset)
 		str++;
 	}
 	sol[i++][idx] = '\0';
-	sol[i] = '\0';
+	sol[i] = 0;
 	return (sol);
 }
