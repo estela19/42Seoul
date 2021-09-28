@@ -1,22 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 09:37:09 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/25 20:28:05 by sooykim          ###   ########.fr       */
+/*   Created: 2021/09/16 15:24:07 by sooykim           #+#    #+#             */
+/*   Updated: 2021/09/22 18:25:31 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
+#include<stdlib.h>
 
-void	ft_putchar(char c);
-void	ft_swap(int *a, int *b);
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
+int	*ft_range(int min, int max)
+{
+	int	i;
+	int	j;
+	int	len;
+	int	*arr;
 
-#endif
+	j = 0;
+	if (min >= max)
+	{
+		arr = 0;
+		return (arr);
+	}
+	else
+	{
+		len = max - min;
+		arr = (int *)malloc((len + 1) * sizeof(int));
+		i = min;
+		while (i < max)
+		{
+			arr[j] = i;
+			i++;
+			j++;
+		}
+		arr[j] = '\0';
+	}
+	return (arr);
+}

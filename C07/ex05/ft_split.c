@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 18:16:53 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/22 23:39:54 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/27 18:32:47 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		g_i;
 int		g_idx;
-int		g_flag;
 char	g_cset[200];
 
 void	set_cset(char *charset)
@@ -50,7 +49,6 @@ void	set_variable(void)
 {
 	g_i = 0;
 	g_idx = 0;
-	g_flag = 0;
 }
 
 char	**ft_split(char *str, char *charset)
@@ -72,7 +70,6 @@ char	**ft_split(char *str, char *charset)
 			g_idx = 0;
 			if (sol[g_i][0] != '\0')
 				g_i++;
-			g_flag = 0;
 		}
 		str++;
 	}
