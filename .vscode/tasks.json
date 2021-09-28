@@ -7,7 +7,7 @@
             "args": [
                 "-Wall",
                 "-Wextra",
-                //"-Werror",
+                "-Werror",
                 "${file}",
                 "-g",
                 "-o",
