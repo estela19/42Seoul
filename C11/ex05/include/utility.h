@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 00:08:15 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/25 00:58:37 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/29 01:53:39 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int		check_num(char a);
 int		ft_strlen(char *a);
 void	print(char *a);
 void	zero_error(char *str);
-void	print_num(int nb);
+void	print_num(long long int nb);
 
 #endif

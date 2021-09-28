@@ -6,14 +6,14 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:38:07 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/25 01:36:17 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/29 01:54:14 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "utility.h"
 
-int	parse_int(char *str)
+long long int	parse_int(char *str)
 {
 	int				mcnt;
 	long long int	num;

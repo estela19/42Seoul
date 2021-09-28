@@ -6,10 +6,11 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 02:31:00 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/25 01:32:14 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/29 01:58:12 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "parser.h"
 #include "operator.h"
 #include "utility.h"
@@ -20,7 +21,7 @@
 #define DIV 3
 #define MOD 4
 
-void	init(long long int (*f[5])(int, int))
+void	init(long long int (*f[5])(long long int, long long int))
 {
 	f[ADD] = add;
 	f[SUB] = sub;
@@ -33,7 +34,7 @@ int	main(int argc, char **argv)
 {
 	long long int	n1;
 	long long int	n2;
-	long long int	(*f[5])(int, int);
+	long long int	(*f[5])(long long int, long long int);
 	 int			op;
 
 	init(f);

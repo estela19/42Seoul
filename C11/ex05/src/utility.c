@@ -6,7 +6,7 @@
 /*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 00:07:04 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/25 01:12:24 by sooykim          ###   ########.fr       */
+/*   Updated: 2021/09/29 02:02:53 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,16 @@ void	zero_error(char *str)
 	print(" by zero");
 }
 
-void	print_num(int nb)
+void	print_num(long long int nb)
 {
 	char	c;
 
-	if (nb / 10 == 0)
+	if (nb < 0)
+	{
+		write(1, "-", 1);
+		print_num(-nb);
+	}
+	else if (nb / 10 == 0)
 	{
 		c = nb + '0';
 		write(1, &c, 1);
