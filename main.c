@@ -1,36 +1,56 @@
-#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+//#include "/mnt/c/github/42seoul/C11/ex07/ft_advanced_sort_string_tab.c"
 
-int ft_ten_queens_puzzle(void);
+void	ft_advanced_sort_string_tab(char **tab, int (*cmp)(char *, char *));
 
-void	ft_putchar(char c)
+int		r_strcmp(char *s1, char *s2)
 {
-	write(1, &c, 1);
+	return strcmp(s1, s2);
 }
 
-void	ft_putnbr(int nb)
+int		compare_len(char *s1, char *s2)
 {
-	long i;
-
-	i = nb;
-	if (i < 0)
-	{
-		ft_putchar('-');
-		i = i * (-1);
-	}
-	if (i > 9)
-	{
-		ft_putnbr(i / 10);
-		ft_putnbr(i % 10);
-	}
-	else
-	{
-		ft_putchar(i + '0');
-	}
+	return strlen(s1) - strlen(s2);
 }
 
-int		main(void)
+void test1(int (*f)(char*,char*))
 {
-	ft_putnbr(ft_ten_queens_puzzle());
-	ft_putchar('\n');
-	return 0;
+	char *tab[] = {
+		"rXGUhQt",
+		"VihSZbMNyY",
+		"aMoCh29W8B",
+		"h6kV4",
+		"R",
+		"GiJl9",
+		"sMCryRJPSOu6",
+		"FNb1",
+		"oU",
+		"oE",
+		"d",
+		"A",
+		"PM",
+		"NDmFi",
+		"JtDHW",
+		"B1JKR",
+		"GTIurC0teHoJ",
+		"VE",
+		"N4ZS",
+		0
+	};
+	ft_advanced_sort_string_tab(tab, f);
+	int i = 0;
+	while (tab[i])
+	{
+		printf("%s\n", tab[i]);
+		i++;
+	}
+	printf("\n");
+}
+
+int main(void)
+{
+	test1(&compare_len);
+	test1(&r_strcmp);
+	return (0);
 }

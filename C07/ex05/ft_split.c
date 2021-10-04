@@ -3,77 +3,107 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sooykim <sooykim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sooykim <sooykim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 18:16:53 by sooykim           #+#    #+#             */
-/*   Updated: 2021/09/27 18:32:47 by sooykim          ###   ########.fr       */
+/*   Created: 2021/09/27 13:34:40 by sooykim           #+#    #+#             */
+/*   Updated: 2021/10/04 22:29:29 by sooykim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdlib.h>
 
-int		g_i;
-int		g_idx;
-char	g_cset[200];
-
-void	set_cset(char *charset)
+int	is_char_in_string(char c, char *set)
 {
-	int	i;
-
-	i = 0;
-	while (i < 200)
-		g_cset[i++] = 0;
-	while (*charset != '\0')
+	while (1)
 	{
-		g_cset[(int)(*charset)] = 1;
-		charset++;
+		if (*set == '\0')
+			return (c == '\0');
+		if (*set == c)
+			return (1);
+		set++;
 	}
+	return (0);
 }
 
-char	**newarr(void)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	 int	i;
-	char	**sol;
+	unsigned int	index;
 
-	i = 0;
-	sol = (char **)malloc(100 * sizeof(char *));
-	while (i < 100)
+	index = 0;
+	while (index < n && src[index] != '\0')
 	{
-		sol[i] = (char *)malloc (1000 * sizeof(char));
-		i++;
+		dest[index] = src[index];
+		index++;
 	}
-	return (sol);
+	while (index < n)
+	{
+		dest[index] = '\0';
+		index++;
+	}
+	return (dest);
 }
 
-void	set_variable(void)
+int	count_occur(char *str, char *charset)
 {
-	g_i = 0;
-	g_idx = 0;
+	int		count;
+	char	*previous;
+	char	*next;
+
+	count = 0;
+	previous = str;
+	next = str;
+	while (1)
+	{
+		if (is_char_in_string(*str, charset))
+			next = str;
+		if (next - previous > 1)
+			count++;
+		if (*str == '\0')
+			break ;
+		previous = next;
+		str++;
+	}
+	return (count);
+}
+
+int	add_part(char **entry, char *previous, int size, char *charset)
+{
+	if (is_char_in_string(previous[0], charset))
+	{
+		previous++;
+		size--;
+	}
+	*entry = (char *)malloc((size + 3) * sizeof(char));
+	ft_strncpy(*entry, previous, size);
+	(*entry)[size] = '\0';
+	(*entry)[size + 1] = '\0';
+	return (1);
 }
 
 char	**ft_split(char *str, char *charset)
 {
-	char	**sol;
+	int		index;
+	int		size;
+	char	*previous;
+	char	*next;
+	char	**array;
 
-	set_variable();
-	sol = newarr();
-	set_cset(charset);
-	if (g_cset[(int)(*str)])
-		str++;
-	while (*str)
+	array = (char **)malloc((count_occur(str, charset) + 1) * sizeof(char *));
+	index = 0;
+	previous = str;
+	next = str;
+	while (1)
 	{
-		if (!g_cset[(int)(*str)])
-			sol[g_i][g_idx++] = *str;
-		else
-		{
-			sol[g_i][g_idx] = '\0';
-			g_idx = 0;
-			if (sol[g_i][0] != '\0')
-				g_i++;
-		}
+		if (is_char_in_string(*str, charset))
+			next = str;
+		size = next - previous;
+		if (size > 1)
+			index += add_part(&array[index], previous, size, charset);
+		if (*str == '\0')
+			break ;
+		previous = next;
 		str++;
 	}
-	sol[g_i++][g_idx] = '\0';
-	sol[g_i] = 0;
-	return (sol);
+	array[index] = 0;
+	return (array);
 }

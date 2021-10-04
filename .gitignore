@@ -1,5 +1,5 @@
-backup/
-.vscode/
+backup/*
+.vscode/*
 a.out
-
+vscode/
 */test*
